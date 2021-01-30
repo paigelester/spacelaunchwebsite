@@ -24,7 +24,9 @@ const Launch = (props: Pick<RouteComponentProps<LaunchRouteParams>, 'match'>) =>
 
             {launchDetails.data && (
                 <div>
-                    Launch
+                    <h1>Launch: {launchDetails.data.name}</h1>
+
+                    <img src={launchDetails.data.image} alt='launch' />
                 </div>
             )}
         </div>

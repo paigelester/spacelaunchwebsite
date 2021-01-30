@@ -70,7 +70,7 @@ export const makeServer = () => {
                     return Response(404);
                 }
 
-                return launch;
+                return launch.attrs;
             });
 
             this.get("launch/upcoming", (schema, request) => {
