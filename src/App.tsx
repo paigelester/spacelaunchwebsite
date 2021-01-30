@@ -1,17 +1,24 @@
 import React from 'react';
+import { RequestProvider } from 'react-request-hook';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import HomePage from 'pages/Home/Home';
+import axiosInstance from 'api/Client';
 
-import './App.scss';
+import 'styles/index.scss';
+
+import HomePage from 'pages/Home/Home';
+import LaunchPage from 'pages/Launch/Launch';
 
 function App() {
 	return (
-		<Router>
-			<Switch>
-				<Route exact={true} path='/' render={HomePage} />
-			</Switch>
-		</Router>
+		<RequestProvider value={axiosInstance}>
+			<Router>
+				<Switch>
+					<Route path='/launch/:id' component={LaunchPage} />
+					<Route exact={true} path='/' component={HomePage} />
+				</Switch>
+			</Router>
+		</RequestProvider>
 	);
 }
 
