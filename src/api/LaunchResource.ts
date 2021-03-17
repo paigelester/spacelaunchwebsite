@@ -5,7 +5,8 @@ import { LaunchList, Launch } from 'models/Launch';
 const launchResource = {
     getLaunch: (id: string): Resource<Launch> => {
         return request<Launch>({
-            url: `launch/${id}`
+            url: `launch/${id}`,
+            method: 'get'
         });
     },
 
