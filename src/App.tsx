@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import axiosInstance from 'api/Client';
 
-import 'styles/index.scss';
+import './App.scss';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import HomePage from 'pages/Home/Home';
 import AgencyPage from 'pages/Agency/Agency';

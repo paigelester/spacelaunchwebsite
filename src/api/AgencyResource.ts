@@ -5,7 +5,7 @@ import { Agency } from 'models/Agency';
 const agencyResource = {
     getAgency: (id: string): Resource<Agency> => {
         return request<Agency>({
-            url: `agency/${id}`,
+            url: `agencies/${id}`,
             method: 'get'
         });
     }
