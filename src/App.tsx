@@ -1,8 +1,7 @@
-import React from 'react';
-import { RequestProvider } from 'react-request-hook';
+import { Suspense } from 'react';
+import { CacheProvider } from 'rest-hooks';
+import { NetworkErrorBoundary } from 'rest-hooks';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import axiosInstance from 'api/Client';
 
 import './App.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -13,15 +12,19 @@ import LaunchPage from 'pages/Launch/Launch';
 
 function App() {
 	return (
-		<RequestProvider value={axiosInstance}>
+		<CacheProvider>
 			<Router>
-				<Switch>
-					<Route path='/agency/:id' component={AgencyPage} />
-					<Route path='/launch/:id' component={LaunchPage} />
-					<Route exact={true} path='/' component={HomePage} />
-				</Switch>
+				<Suspense fallback={<div>Loading...</div>}>
+					<NetworkErrorBoundary>
+						<Switch>
+							<Route path='/agency/:id' component={AgencyPage} />
+							<Route path='/launch/:id' component={LaunchPage} />
+							<Route exact={true} path='/' component={HomePage} />
+						</Switch>
+					</NetworkErrorBoundary>
+				</Suspense>
 			</Router>
-		</RequestProvider>
+		</CacheProvider>
 	);
 }
 
