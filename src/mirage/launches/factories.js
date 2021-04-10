@@ -1,4 +1,4 @@
-import { Factory, trait } from 'miragejs';
+import { Factory } from 'miragejs';
 
 export default {
     launch: Factory.extend({

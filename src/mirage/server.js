@@ -1,4 +1,4 @@
-import { createServer, Factory, trait, Response } from 'miragejs';
+import { createServer } from 'miragejs';
 
 import Agencies from './agencies';
 import Launches from './launches';
@@ -22,7 +22,7 @@ export const makeServer = () => {
         },
 
         routes() {
-            this.urlPrefix = 'https://ll.thespacedevs.com/2.1.0/'
+            this.urlPrefix = 'https://ll.thespacedevs.com/2.1.0/';
 
             Agencies.routes(this);
             Launches.routes(this);

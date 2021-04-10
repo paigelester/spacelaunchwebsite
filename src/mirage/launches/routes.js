@@ -14,20 +14,42 @@ export default (server) => {
         return launch.attrs;
     });
 
-    server.get("launch/upcoming", (schema, request) => {
-        const limit = request.queryParams.limit;
+    server.get('launch', (schema, request) => {
+        const launches = schema.launches.all().models;
 
+        return {
+            count: launches.length,
+            next: "",
+            previous: "",
+            results: launches
+        };
+    });
+
+    // upcoming launch routes
+    server.get("launch/upcoming", (schema, request) => {
+        const defaultLimit = 10;
+        const limit = request.queryParams.limit || defaultLimit;
+
+        const defaultOffset = 0;
+        const offset = request.queryParams.limit || defaultOffset;
+
+        // find all upcoming launches
         const upcomingLaunches = schema.launches.all().models.reduce((prev, current) => {
             if (new Date(current.window_start) > new Date()) {
                 prev.push(current);
             }
 
             return prev;
-        }, []).slice(0, limit);
+        }, []);
+
+        // limit launches
+        const limitedUpcomingLaunches = upcomingLaunches.slice(offset, limit);
 
         return {
             count: upcomingLaunches.length,
-            results: upcomingLaunches
+            next: "",
+            previous: offset === defaultOffset ? null : "",
+            results: limitedUpcomingLaunches
         };
     });
 };
