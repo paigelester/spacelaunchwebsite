@@ -1,6 +1,6 @@
-import { Resource } from '@rest-hooks/rest';
+import BaseResource, { getBaseURL } from './BaseResource';
 
-export class AgenciesResource extends Resource {
+export class AgenciesResource extends BaseResource {
     readonly id: number | undefined = undefined;
     readonly name: string = '';
     readonly description: string = '';
@@ -15,5 +15,5 @@ export class AgenciesResource extends Resource {
         return this.id?.toString();
     }
 
-    static urlRoot = 'https://ll.thespacedevs.com/2.1.0/agencies';
+    static urlRoot = `${getBaseURL()}/agencies`;
 }

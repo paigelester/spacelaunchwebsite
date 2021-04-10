@@ -1,12 +1,4 @@
-import { Resource } from '@rest-hooks/rest';
-
-export abstract class BaseResource extends Resource {
-    static list<T extends typeof Resource>(this: T) {
-        return super.list().extend({
-            schema: { count: Number, next: String || null, previous: String || null, results: [this] },
-        });
-    }
-}
+import BaseResource, { getBaseURL } from './BaseResource';
 
 interface LaunchStatus {
     id: number;
@@ -30,7 +22,7 @@ export class LaunchResource extends BaseResource {
         return this.id?.toString();
     }
 
-    static urlRoot = 'https://ll.thespacedevs.com/2.1.0/launch';
+    static urlRoot = `${getBaseURL()}/launch`;
 }
 
 export class UpcomingLaunchResource extends BaseResource {
@@ -62,7 +54,7 @@ export class UpcomingLaunchResource extends BaseResource {
         return this.id?.toString();
     }
 
-    static urlRoot = 'https://ll.thespacedevs.com/2.1.0/launch/upcoming/';
+    static urlRoot = `${getBaseURL()}/launch/upcoming/`;
 }
 
 export class PreviousLaunchResource extends BaseResource {
@@ -73,5 +65,5 @@ export class PreviousLaunchResource extends BaseResource {
         return this.id?.toString();
     }
 
-    static urlRoot = 'https://ll.thespacedevs.com/2.1.0/launch/previous/';
+    static urlRoot = `${getBaseURL()}/launch/previous/`;
 }
