@@ -14,6 +14,10 @@ interface LaunchServiceProvider {
     type: string;
 }
 
+interface LaunchMission {
+    description: string;
+}
+
 export class LaunchResource extends BaseResource {
     readonly id: number | undefined = undefined;
     readonly name: string = '';
@@ -32,9 +36,9 @@ export class UpcomingLaunchResource extends BaseResource {
     readonly slug: string = '';
     readonly name: string = '';
     readonly status: LaunchStatus | null = null;
-    readonly net: Date = new Date();
-    readonly window_end: Date = new Date();
-    readonly window_start: Date = new Date();
+    readonly net: string = '';
+    readonly window_end: string = '';
+    readonly window_start: string = '';
     readonly inhold: boolean = false;
     readonly tbdtime: boolean = false;
     readonly tbddate: boolean = false;
@@ -43,6 +47,7 @@ export class UpcomingLaunchResource extends BaseResource {
     readonly failreason: string = '';
     readonly hashtag: string = '';
     readonly launch_service_provider: LaunchServiceProvider | null = null;
+    readonly mission: LaunchMission | null = null;
 
     readonly webcast_live: boolean = false;
     readonly image: string = '';
@@ -59,7 +64,27 @@ export class UpcomingLaunchResource extends BaseResource {
 
 export class PreviousLaunchResource extends BaseResource {
     readonly id: number | undefined = undefined;
+    readonly url: string = '';
+    readonly launch_library_id: number | undefined = undefined;
+    readonly slug: string = '';
     readonly name: string = '';
+    readonly status: LaunchStatus | null = null;
+    readonly net: string = '';
+    readonly window_end: string = '';
+    readonly window_start: string = '';
+    readonly inhold: boolean = false;
+    readonly tbdtime: boolean = false;
+    readonly tbddate: boolean = false;
+    readonly probability: number | undefined = undefined;
+    readonly holdreason: string = '';
+    readonly failreason: string = '';
+    readonly hashtag: string = '';
+    readonly launch_service_provider: LaunchServiceProvider | null = null;
+    readonly mission: LaunchMission | null = null;
+    readonly webcast_live: boolean = false;
+    readonly image: string = '';
+    readonly infographic: string = '';
+    readonly program: Array<any> = [];
 
     pk() {
         return this.id?.toString();
