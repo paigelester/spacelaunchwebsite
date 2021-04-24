@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders title as expected given close launch is a previous launch 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <div
+      class="card-header"
+    >
+      <div
+        class="p-2 pb-3 border-bottom border-light"
+      >
+        <h5
+          class="d-inline"
+        >
+          Previous
+           launch
+        </h5>
+      </div>
+    </div>
+    <div
+      class="card-body"
+    >
+      <h5>
+        Launch title
+      </h5>
+      <p>
+        This is an exampe description for an upcoming launch.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders title as expected given close launch is an upcoming launch 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <div
+      class="card-header"
+    >
+      <div
+        class="p-2 pb-3 border-bottom border-light"
+      >
+        <h5
+          class="d-inline"
+        >
+          Upcoming
+           launch
+        </h5>
+      </div>
+    </div>
+    <div
+      class="card-body"
+    >
+      <h5>
+        Launch title
+      </h5>
+      <p>
+        This is an exampe description for an upcoming launch.
+      </p>
+    </div>
+  </div>
+</div>
+`;
