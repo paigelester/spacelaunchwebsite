@@ -31,7 +31,35 @@ export default (server) => {
         const limit = request.queryParams.limit || defaultLimit;
 
         const defaultOffset = 0;
-        const offset = request.queryParams.limit || defaultOffset;
+        const offset = request.queryParams.offset || defaultOffset;
+
+        // find all upcoming launches
+        const upcomingLaunches = schema.launches.all().models.reduce((prev, current) => {
+            if (new Date(current.window_start) > new Date()) {
+                prev.push(current);
+            }
+
+            return prev;
+        }, []);
+
+        // limit launches
+        const limitedUpcomingLaunches = upcomingLaunches.slice(offset, limit);
+
+        return {
+            count: upcomingLaunches.length,
+            next: "",
+            previous: offset === defaultOffset ? null : "",
+            results: limitedUpcomingLaunches
+        };
+    });
+
+    // previous launch routes
+    server.get("launch/previous", (schema, request) => {
+        const defaultLimit = 10;
+        const limit = request.queryParams.limit || defaultLimit;
+
+        const defaultOffset = 0;
+        const offset = request.queryParams.offset || defaultOffset;
 
         // find all upcoming launches
         const upcomingLaunches = schema.launches.all().models.reduce((prev, current) => {

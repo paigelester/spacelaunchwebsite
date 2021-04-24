@@ -1,4 +1,4 @@
-import { Factory } from 'miragejs';
+import { Factory, trait } from 'miragejs';
 
 export default {
     launch: Factory.extend({
@@ -79,6 +79,15 @@ export default {
         webcast_live: true,
         image: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_image_20210308112429.png",
         infographic: "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_infographic_20210314032200.jpeg",
-        program: []
+        program: [],
+
+        upcoming: trait({
+            window_start() {
+                var today = new Date();
+                var result = new Date();
+                result.setDate(today.getDate() + 1);
+                return result.toDateString();
+            }
+        })
     })
 }
