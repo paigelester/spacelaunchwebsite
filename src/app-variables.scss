@@ -1,7 +1,21 @@
+@import "~bootstrap/scss/bootstrap-utilities.scss";
+
 // Brand colours
 $brand-background-colour: #071C21;
 $brand-panel-colour: #061417;
 $brand-yellow: #C6DE41;
+
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
 
 $primary: #2D6E7E;
 $secondary: #153b44;
@@ -11,20 +25,36 @@ $danger: #C03546;
 
 $sub-text-color: #AFAFAF;
 
-// Required
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-
+// Additional utilities
+$utilities: map-merge(
+    $utilities,
+    (
+        "opacity": (
+            property: opacity,
+            class: o,
+            values: (
+                0: 0,
+                25: .25,
+                50: .5,
+                75: .75,
+                100: 1,
+            )
+        )
+    )
+);
 
 // Bootstrap overrides
 $body-bg: $brand-background-colour;
 $body-color: $gray-400;
 
+// headings
+$headings-color: $gray-400;
+
 // Components
 // Card
 $card-bg: $brand-panel-colour;
 $card-color: $white;
+$card-border-radius: 0;
 
 // Jumbotron
 $jumbotron-bg: $brand-background-colour;
