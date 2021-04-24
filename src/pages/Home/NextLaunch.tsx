@@ -1,29 +1,8 @@
-import React from 'react';
+import React from "react";
+import { Container, Row, Col, Image, Card } from "react-bootstrap";
 
-import { Container, Row, Col, Image, Card, Badge } from 'react-bootstrap';
-
-import Countdown from 'components/features/Countdown';
-
-const getBadge = (launchStatus: string | undefined): JSX.Element => {
-    let backgroundColour: string = "light";
-
-    if (launchStatus !== undefined) {
-        switch (launchStatus) {
-            case "Go for Launch":
-            case "Go":
-            case "Success":
-            case "Launch Successful":
-                backgroundColour = "success";
-                break;
-            case "TBD":
-            case "To Be Determined":
-                backgroundColour = "warning";
-                break;
-        }
-    }
-
-    return <Badge bg={backgroundColour}>{launchStatus}</Badge>;
-};
+import Countdown from "components/features/Countdown";
+import LaunchStatus from "components/features/LaunchStatus";
 
 interface NextLaunchProps {
     name: string;
@@ -53,11 +32,11 @@ const NextLaunch = (props: NextLaunchProps) => {
                     <Col className="g-0">
                         <Card className="h-100">
                             <Card.Body>
-                                <div className='float-start'>
+                                <div className="float-start">
                                     <p className="d-inline fs-6 text-muted border-end border-dark pe-2 me-2">{props.launchProviderName}</p>
                                     <p className="d-inline fs-6 text-muted">{props.launchProviderType}</p>
                                 </div>
-                                <div className='float-end'>{getBadge(props.status)}</div>
+                                <div className="float-end"><LaunchStatus status={props.status} /></div>
                                 <h4 className="pt-5 pb-2">{props.name}</h4>
                                 <p>{props.missionDescription}</p>
                             </Card.Body>
