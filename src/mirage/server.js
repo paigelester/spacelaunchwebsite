@@ -1,10 +1,33 @@
-import { createServer } from 'miragejs';
+import { createServer, RestSerializer } from 'miragejs';
+import { snakeCase, underscore } from 'lodash';
 
 import Agencies from './agencies';
 import Launches from './launches';
 
-export const makeServer = () => {
+const ApplicationSerializer = RestSerializer.extend({
+    root: false,
+    embed: true,
+    keyForAttribute(attr) {
+        return snakeCase(attr);
+    },
+    keyForEmbeddedRelationship(attr) {
+        return snakeCase(attr);
+    }
+});
+
+export const makeServer = (environment = 'development') => {
     let server = createServer({
+        serializers: {
+            application: ApplicationSerializer,
+            launch: ApplicationSerializer.extend({
+                include: ['status', 'launch_service_provider', 'mission', 'rocket']
+            }),
+            rocket: ApplicationSerializer.extend({
+                include: ['configuration']
+            })
+        },
+
+        environment: environment,
 
         models: {
             ...Agencies.models,
@@ -26,7 +49,7 @@ export const makeServer = () => {
 
             Agencies.routes(this);
             Launches.routes(this);
-        }
+        },
 
     });
 

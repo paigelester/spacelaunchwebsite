@@ -1,7 +1,9 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-import LaunchStatus from "components/features/LaunchStatus";
+import LaunchResource from 'api/LaunchResource';
+
+import LaunchStatus from "components/features/LaunchStatusIndicator";
 
 export enum CloseLaunchType {
     Upcoming = "Upcoming",
@@ -9,10 +11,8 @@ export enum CloseLaunchType {
 }
 
 interface CloseLaunchProps {
-    name: string;
-    status: string;
-    description: string;
     type: CloseLaunchType;
+    launch: LaunchResource;
 }
 
 const CloseLaunch = (props: CloseLaunchProps) => {
@@ -21,14 +21,12 @@ const CloseLaunch = (props: CloseLaunchProps) => {
             <Card.Header>
                 <div className="p-2 pb-3 border-bottom border-light">
                     <h5 className="d-inline">{props.type} launch</h5>
-                    {/* <div className="float-end">
-                        <LaunchStatus status={props.status} />
-                    </div> */}
+                    {props.launch.status && <div className="float-end"><LaunchStatus status={props.launch.status} /></div>}
                 </div>
             </Card.Header>
             <Card.Body>
-                <h5>{props.name}</h5>
-                <p>{props.description}</p>
+                <h5>{props.launch.name}</h5>
+                <p>{props.launch.mission?.description}</p>
             </Card.Body>
         </Card>
     );

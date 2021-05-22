@@ -1,9 +1,23 @@
-import { Resource } from '@rest-hooks/rest';
+import { Resource, Schema } from '@rest-hooks/rest';
 
-export default abstract class BaseResource extends Resource {
+export default class BaseResource extends Resource {
+    readonly id: number | undefined = undefined;
+
+    pk() {
+        return this.id?.toString();
+    }
+
+    static getListSchema(resource: any) {
+        const listSchema: Schema = {
+            results: [resource], count: Number, next: String || null, previous: String || null
+        };
+
+        return listSchema;
+    }
+
     static list<T extends typeof Resource>(this: T) {
         return super.list().extend({
-            schema: { count: Number, next: String || null, previous: String || null, results: [this] },
+            schema: BaseResource.getListSchema(this)
         });
     }
 }

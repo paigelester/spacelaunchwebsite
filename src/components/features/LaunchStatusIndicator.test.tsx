@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import LaunchStatus from './LaunchStatus';
+import LaunchStatusIndicator from './LaunchStatusIndicator';
 
 it("renders as expected given status is Go", () => {
     // given
