@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import HomePage from 'pages/Home/Home';
+import HomePage from 'pages/Home';
 import AgencyPage from 'pages/Agency/Agency';
 import LaunchPage from 'pages/Launch/Launch';
 
