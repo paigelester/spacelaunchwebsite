@@ -1,41 +1,47 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { makeServer } from 'mirage/server';
 import CloseLaunch, { CloseLaunchType } from "./CloseLaunch";
 
-it("renders title as expected given close launch is an upcoming launch", () => {
+let server: any;
+beforeEach(() => { server = makeServer(); });
+afterEach(() => { server.shutdown() });
+
+it("renders as expected", () => {
     // given
-    const status: string = "Go";
-    const name: string = "Launch title";
-    const description: string = "This is an exampe description for an upcoming launch.";
+    const launch = server.create('launch');
 
     // when
     const { container } = render(
-        <CloseLaunch
-            name={name}
-            status={status}
-            description={description}
-            type={CloseLaunchType.Upcoming} />
+        <CloseLaunch launch={launch} type={CloseLaunchType.Upcoming} />
     );
 
     // then
     expect(container).toMatchSnapshot();
 });
 
-it("renders title as expected given close launch is a previous launch", () => {
+it("renders title as expected given close launch is an upcoming launch", () => {
     // given
-    const status: string = "Go";
-    const name: string = "Launch title";
-    const description: string = "This is an exampe description for an upcoming launch.";
+    const launch = server.create('launch');
 
     // when
-    const { container } = render(
-        <CloseLaunch
-            name={name}
-            status={status}
-            description={description}
-            type={CloseLaunchType.Previous} />
+    const { getByText } = render(
+        <CloseLaunch launch={launch} type={CloseLaunchType.Upcoming} />
     );
 
     // then
-    expect(container).toMatchSnapshot();
+    expect(getByText('Upcoming launch')).toBeTruthy();
+});
+
+it("renders title as expected given close launch is a previous launch", () => {
+    // given
+    const launch = server.create('launch');
+
+    // when
+    const { getByText } = render(
+        <CloseLaunch launch={launch} type={CloseLaunchType.Previous} />
+    );
+
+    // then
+    expect(getByText('Previous launch')).toBeTruthy();
 });

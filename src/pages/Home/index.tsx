@@ -11,12 +11,11 @@ const HomePage = () => {
 
     const upcomingLaunches = useResource(LaunchResource.upcomingLaunches(), { limit: 2 });
     const previousLaunches = useResource(LaunchResource.upcomingLaunches(), { limit: 1 });
-    console.info(upcomingLaunches.results[0]);
     
     return (
         <div id='home-page'>
             {upcomingLaunches.count > 0 && (
-                <div>
+                <div data-testid='launches'>
                     <NextLaunch {...upcomingLaunches.results[0]} />
                     <Container fluid={true} className="">
                         <Row>

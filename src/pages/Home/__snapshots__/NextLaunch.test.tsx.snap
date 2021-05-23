@@ -20,7 +20,6 @@ exports[`renders as expected 1`] = `
             <img
               alt="launch"
               class="img-fluid"
-              src=""
             />
             <div
               class="position-absolute top-0 w-100 h-100 o-75 bg-dark"
@@ -56,7 +55,7 @@ exports[`renders as expected 1`] = `
                   <p
                     class="countdown-hours-value fs-1 m-0"
                   >
-                    00
+                    01
                   </p>
                   <p
                     class="countdown-hours text-muted text-uppercase m-0"
@@ -70,7 +69,7 @@ exports[`renders as expected 1`] = `
                   <p
                     class="countdown-minutes-value fs-1 m-0"
                   >
-                    59
+                    00
                   </p>
                   <p
                     class="countdown-minutes text-muted text-uppercase m-0"
@@ -84,7 +83,7 @@ exports[`renders as expected 1`] = `
                   <p
                     class="countdown-seconds-value fs-1 m-0"
                   >
-                    59
+                    00
                   </p>
                   <p
                     class="countdown-seconds text-muted text-uppercase m-0"
@@ -110,32 +109,15 @@ exports[`renders as expected 1`] = `
               >
                 <p
                   class="d-inline fs-6 text-muted border-end border-dark pe-2 me-2"
-                >
-                  Launch Co
-                </p>
+                />
                 <p
                   class="d-inline fs-6 text-muted"
-                >
-                  Commercial
-                </p>
-              </div>
-              <div
-                class="float-end"
-              >
-                <span
-                  class="badge bg-success"
-                >
-                  Go for Launch
-                </span>
+                />
               </div>
               <h4
                 class="pt-5 pb-2"
-              >
-                Launch name
-              </h4>
-              <p>
-                This is an example description of the launch mission.
-              </p>
+              />
+              <p />
             </div>
           </div>
         </div>

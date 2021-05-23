@@ -1,31 +1,21 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { makeServer } from 'mirage/server';
 import NextLaunch from "./NextLaunch";
 
+let server: any;
 beforeEach(() => {
+    server = makeServer();
     Date.now = jest.fn(() => 1618171860892);
 });
+afterEach(() => { server.shutdown() });
 
 it("renders as expected", () => {
     // given
-    const name: string = "Launch name";
-    const status: string = "Go for Launch";
-    const launchProviderName: string = "Launch Co";
-    const launchProviderType: string = "Commercial";
-    const launchWindowStart: string = new Date(Date.now()).toString();
-    const missionDescription: string = "This is an example description of the launch mission.";
+    const launch = server.create('launch');
 
     // when
-    const { container } = render(
-        <NextLaunch
-            name={name}
-            image={""}
-            status={status}
-            launchWindowStart={launchWindowStart}
-            missionDescription={missionDescription} 
-            launchProviderName={launchProviderName}
-            launchProviderType={launchProviderType} />
-    );
+    const { container } = render(<NextLaunch {...launch} />);
 
     // then
     expect(container).toMatchSnapshot();
