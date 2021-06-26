@@ -28,7 +28,7 @@ const NextLaunch = (props: LaunchResource) => {
                                     <p className="d-inline fs-6 text-muted border-end border-dark pe-2 me-2">{props.launch_service_provider?.name}</p>
                                     <p className="d-inline fs-6 text-muted">{props.launch_service_provider?.type}</p>
                                 </div>
-                                {props.status && <div className="float-end"><LaunchStatusIndicator status={props.status} /></div>}
+                                {props.status && <div className="float-end"><LaunchStatusIndicator status={props.status?.abbrev} /></div>}
                                 <h4 className="pt-5 pb-2">{props.name}</h4>
                                 <p>{props.mission?.description}</p>
                             </Card.Body>

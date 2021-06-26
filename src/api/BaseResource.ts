@@ -16,7 +16,9 @@ export default class BaseResource extends Resource {
     }
 
     static list<T extends typeof Resource>(this: T) {
-        return super.list().extend({
+        const endpoint = super.list();
+
+        return endpoint.extend({
             schema: BaseResource.getListSchema(this)
         });
     }

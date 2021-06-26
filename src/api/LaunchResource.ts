@@ -68,7 +68,7 @@ export default class LaunchResource extends BaseResource {
 
     static upcomingLaunches<T extends typeof BaseResource>(this: T) {
         return super.list().extend({
-            url() { return `${LaunchResource.urlRoot}/upcoming` }
+            url({ limit }) { return `${LaunchResource.urlRoot}/upcoming?limit=${limit}` }
         });
     }
 

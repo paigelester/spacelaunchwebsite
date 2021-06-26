@@ -48,7 +48,7 @@ exports[`renders as expected 1`] = `
                       <p
                         class="countdown-days-value fs-1 m-0"
                       >
-                        1
+                        18
                       </p>
                       <p
                         class="countdown-days text-muted text-uppercase m-0"
@@ -62,7 +62,7 @@ exports[`renders as expected 1`] = `
                       <p
                         class="countdown-hours-value fs-1 m-0"
                       >
-                        07
+                        03
                       </p>
                       <p
                         class="countdown-hours text-muted text-uppercase m-0"
@@ -76,7 +76,7 @@ exports[`renders as expected 1`] = `
                       <p
                         class="countdown-minutes-value fs-1 m-0"
                       >
-                        54
+                        48
                       </p>
                       <p
                         class="countdown-minutes text-muted text-uppercase m-0"
@@ -90,7 +90,7 @@ exports[`renders as expected 1`] = `
                       <p
                         class="countdown-seconds-value fs-1 m-0"
                       >
-                        45
+                        59
                       </p>
                       <p
                         class="countdown-seconds text-muted text-uppercase m-0"
@@ -117,7 +117,7 @@ exports[`renders as expected 1`] = `
                     <p
                       class="d-inline fs-6 text-muted border-end border-dark pe-2 me-2"
                     >
-                      Launch provider 2
+                      Launch provider 1
                     </p>
                     <p
                       class="d-inline fs-6 text-muted"
@@ -129,9 +129,9 @@ exports[`renders as expected 1`] = `
                     class="float-end"
                   >
                     <span
-                      class="badge bg-info"
+                      class="badge bg-warning"
                     >
-                      To Be Determined
+                      TBD
                     </span>
                   </div>
                   <h4
@@ -149,101 +149,22 @@ exports[`renders as expected 1`] = `
         </div>
       </div>
       <div
-        class="container-fluid"
+        class="m-4"
       >
-        <div
-          class="row"
+        <h2
+          class="mb-4"
         >
-          <div
-            class="p-0 col-md-6 col-sm-12"
-          >
-            <div
-              class="card"
-            >
-              <div
-                class="card-header"
-              >
-                <div
-                  class="p-2 pb-3 border-bottom border-light"
-                >
-                  <h5
-                    class="d-inline"
-                  >
-                    Previous
-                     launch
-                  </h5>
-                  <div
-                    class="float-end"
-                  >
-                    <span
-                      class="badge bg-info"
-                    >
-                      To Be Determined
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="card-body"
-              >
-                <h5>
-                  Falcon 9 Block 5 | Starlink 21
-                </h5>
-                <p>
-                  First cargo delivery mission to the space station.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-0 col-md-6 col-sm-12"
-          >
-            <div
-              class="card"
-            >
-              <div
-                class="card-header"
-              >
-                <div
-                  class="p-2 pb-3 border-bottom border-light"
-                >
-                  <h5
-                    class="d-inline"
-                  >
-                    Upcoming
-                     launch
-                  </h5>
-                  <div
-                    class="float-end"
-                  >
-                    <span
-                      class="badge bg-info"
-                    >
-                      To Be Determined
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="card-body"
-              >
-                <h5>
-                  Falcon 9 Block 5 | Starlink 21
-                </h5>
-                <p>
-                  First cargo delivery mission to the space station.
-                </p>
-              </div>
-            </div>
-          </div>
+          Upcoming launches
+        </h2>
+        <div
+          class="react-multi-carousel-list  "
+        >
+          <ul
+            class="react-multi-carousel-track "
+            style="transition: none; overflow: unset; transform: translate3d(0px,0,0);"
+          />
         </div>
       </div>
-    </div>
-    <div>
-      News (Upcoming events, expedictions, landings, launches)
-    </div>
-    <div>
-      Agencies
     </div>
   </div>
 </div>

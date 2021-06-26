@@ -1,10 +1,8 @@
 import React from "react";
 import { Badge } from "react-bootstrap";
 
-import { LaunchStatus } from 'api/LaunchResource';
-
 interface LaunchStatusIndicatorProps {
-    status: LaunchStatus;
+    status: string;
 }
 
 const getLaunchStatusVariant = (status: string): string => {
@@ -23,7 +21,7 @@ const getLaunchStatusVariant = (status: string): string => {
 
 const LaunchStatusIndicator = (props: LaunchStatusIndicatorProps) => {
     return (
-        <Badge bg={getLaunchStatusVariant(props.status.name)}>{props.status.name}</Badge>
+        <Badge bg={getLaunchStatusVariant(props.status)}>{props.status}</Badge>
     );
 };
 

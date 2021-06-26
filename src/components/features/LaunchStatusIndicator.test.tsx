@@ -7,7 +7,7 @@ it("renders as expected given status is Go", () => {
     const status: string = "Go";
 
     // when
-    const { container } = render(<LaunchStatus status={status} />);
+    const { container } = render(<LaunchStatusIndicator status={status} />);
 
     // then
     expect(container).toMatchSnapshot();
@@ -18,7 +18,7 @@ it("renders as expected given status is Go for Launch", () => {
     const status: string = "Go for Launch";
 
     // when
-    const { container } = render(<LaunchStatus status={status} />);
+    const { container } = render(<LaunchStatusIndicator status={status} />);
 
     // then
     expect(container).toMatchSnapshot();
@@ -29,7 +29,7 @@ it("renders as expected given status is Success", () => {
     const status: string = "Success";
 
     // when
-    const { container } = render(<LaunchStatus status={status} />);
+    const { container } = render(<LaunchStatusIndicator status={status} />);
 
     // then
     expect(container).toMatchSnapshot();
@@ -40,7 +40,7 @@ it("renders as expected given status is Launch Successful", () => {
     const status: string = "Launch Successful";
 
     // when
-    const { container } = render(<LaunchStatus status={status} />);
+    const { container } = render(<LaunchStatusIndicator status={status} />);
 
     // then
     expect(container).toMatchSnapshot();
@@ -51,7 +51,7 @@ it("renders as expected given status is TBD", () => {
     const status: string = "TBD";
 
     // when
-    const { container } = render(<LaunchStatus status={status} />);
+    const { container } = render(<LaunchStatusIndicator status={status} />);
 
     // then
     expect(container).toMatchSnapshot();
@@ -62,7 +62,7 @@ it("renders as expected given status is unknown", () => {
     const status: string = "unknown";
 
     // when
-    const { container } = render(<LaunchStatus status={status} />);
+    const { container } = render(<LaunchStatusIndicator status={status} />);
 
     // then
     expect(container).toMatchSnapshot();

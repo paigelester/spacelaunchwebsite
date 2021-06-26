@@ -6,7 +6,7 @@ import Home from './index';
 
 let server: any;
 beforeEach(() => {
-    server = makeServer();
+    server = makeServer("test");
     Date.now = jest.fn(() => 1618171860892);
 });
 afterEach(() => { server.shutdown() });

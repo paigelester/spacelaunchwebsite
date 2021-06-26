@@ -1,11 +1,10 @@
 import React from 'react';
 import { useResource } from 'rest-hooks';
-import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 
 import LaunchResource from 'api/LaunchResource';
 
 import NextLaunch from './NextLaunch';
-import CloseLaunch, { CloseLaunchType } from './CloseLaunch';
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -35,10 +34,29 @@ const responsive = {
     }
 };
 
+const CustomDot = ({ onClick, ...rest }: any) => {
+    const {
+        onMove,
+        index,
+        active,
+        carouselState: { currentSlide, deviceType }
+    } = rest;
+
+    const buttonClasses: string = "bg-transparent border-0 text-white";
+
+    return (
+        <button
+            className={active ? `${buttonClasses} active` : `${buttonClasses} inactive`}
+            onClick={() => onClick()}
+        >
+            <i className={active ? "bi bi-star-fill" : "bi bi-star"}></i>
+        </button>
+    );
+};
+
 const HomePage = () => {
 
-    const upcomingLaunches = useResource(LaunchResource.upcomingLaunches(), { limit: 2 });
-    const previousLaunches = useResource(LaunchResource.upcomingLaunches(), { limit: 1 });
+    const upcomingLaunches = useResource(LaunchResource.upcomingLaunches(), { limit: 5 });
     
     return (
         <div id='home-page'>
@@ -46,44 +64,47 @@ const HomePage = () => {
                 <div data-testid='launches'>
                     <NextLaunch {...upcomingLaunches.results[0]} />
                     <div className='m-4'>
-                        <h2 className="mb-3">Upcoming launches</h2>
+                        <h2 className="mb-4">Upcoming launches</h2>
                         <Carousel
+                            customDot={<CustomDot />}
                             responsive={responsive}
                             removeArrowOnDeviceType={["tablet", "mobile"]}
                             showDots={true}
                             infinite={true}
-                            autoPlay={true}
+                            autoPlay={false}
                             autoPlaySpeed={5000}
                             partialVisible={true}
                         >
                             {upcomingLaunches.results.map((launch: LaunchResource, launchIndex: number) => (
-                                <div key={launchIndex} className='shadow m-2 mb-5 rounded' style={{ backgroundColor: '#E1D89F' }}>
-                                    <Image src={launch.image} alt='launch' className="img-fluid mb-1" />
-                                    <div className="m-2">
+                                <div key={launchIndex} className="position-relative shadow rounded bg-black">
+                                    <div className="position-absolute ms-4 mt-2">{launch.status?.abbrev}</div>
+
+                                    <div className="mx-2 mb-0" style={{
+                                        display: 'flex',
+                                        alignContent: 'center',
+                                        justifyContent: 'center',
+                                        overflow: 'hidden'
+                                    }}>
+                                        <Image src={launch.image} alt='launch' className="mb-0" style={{
+                                            width: 'auto',
+                                            height: 'auto',
+                                            maxHeight: '250px'
+                                        }} />
+                                    </div>
+
+                                    <div className="mx-2 px-3 py-2 bg-white mb-5">
                                         <p className="text-muted m-0">{launch.launch_service_provider!.name}</p>
                                         <h3 className="fs-5 text-dark my-1">{launch.name}</h3>
                                         <div className="text-end my-2">
-                                            <Button size="sm" className='bg-transparent border-0 text-dark'>READ MORE -</Button>
+                                            <Button size="sm" className='bg-transparent border-0 text-dark'>
+                                                READ MORE <i className="bi bi-chevron-right"></i>
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </Carousel>
                     </div>
-                    {/* <Container fluid={true} className="">
-                        <Row>
-                            <Col sm={12} md={6} className="p-0">
-                                <CloseLaunch
-                                    launch={previousLaunches.results[0]}
-                                    type={CloseLaunchType.Previous}/>
-                            </Col>
-                            <Col sm={12} md={6} className="p-0">
-                                <CloseLaunch
-                                    launch={upcomingLaunches.results[0]}
-                                    type={CloseLaunchType.Upcoming} />
-                            </Col>
-                        </Row>
-                    </Container> */}
                 </div>
             )}
         </div>
