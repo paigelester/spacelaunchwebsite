@@ -6,6 +6,8 @@ import LaunchResource from 'api/LaunchResource';
 
 import NextLaunch from './NextLaunch';
 
+import LaunchStatusIndicator from "components/features/LaunchStatusIndicator";
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -34,14 +36,7 @@ const responsive = {
     }
 };
 
-const CustomDot = ({ onClick, ...rest }: any) => {
-    const {
-        onMove,
-        index,
-        active,
-        carouselState: { currentSlide, deviceType }
-    } = rest;
-
+const CustomDot = ({ onClick, active }: any) => {
     const buttonClasses: string = "bg-transparent border-0 text-white";
 
     return (
@@ -77,7 +72,9 @@ const HomePage = () => {
                         >
                             {upcomingLaunches.results.map((launch: LaunchResource, launchIndex: number) => (
                                 <div key={launchIndex} className="position-relative shadow rounded bg-black">
-                                    <div className="position-absolute ms-4 mt-2">{launch.status?.abbrev}</div>
+                                    <div className="position-absolute ms-4 mt-2">
+                                        <LaunchStatusIndicator status={launch.status?.abbrev || "Unknown"} />
+                                    </div>
 
                                     <div className="mx-2 mb-0" style={{
                                         display: 'flex',
